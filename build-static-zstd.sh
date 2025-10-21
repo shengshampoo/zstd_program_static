@@ -26,6 +26,7 @@ ninja
 ninja install
 
 # zstd
+cd $WORKSPACE
 git clone https://github.com/facebook/zstd.git
 cd zstd/build/meson
 PKG_CONFIG_PATH=/usr/local/xzmm/lib/pkgconfig CFLAGS="$CFLAGS -static" LDFLAGS="-static --static -no-pie -s" meson setup builddir -Dprefix=/usr/local/xzmm -Ddefault_library=static -Dzlib=enabled -Dlzma=enabled -Dlz4=enabled --strip
@@ -36,7 +37,27 @@ sed -i 's@-llz4@-L/usr/local/xzmm/lib -llz4@g' ./build.ninja
 ninja
 ninja install
 
+# lzip
+cd $WORKSPACE
+aa=1.25
+curl -sL https://quantum-mirror.hu/mirrors/pub/gnusavannah/lzip/lzip-$aa.tar.gz | tar x --gzip
+cd lzip-$aa
+LDFLAGS="-static --static -no-pie -s" ./configure --prefix=/usr/local/lzipmm
+sed -i '/^LDFLAGS = /s/ = / = -static --static -no-pie -s/' ./Makefile
+make
+make install 
+
+# lunzip
+cd $WORKSPACE
+aa=1.15
+curl -sL http://download.savannah.gnu.org/releases/lzip/lunzip/lunzip-$aa.tar.gz | tar x --gzip
+cd lunzip-$aa
+LDFLAGS="-static --static -no-pie -s" ./configure --prefix=/usr/local/lzipmm && sed -i '/^LDFLAGS = /s/ = / = -static --static -no-pie -s/' ./Makefile
+make
+make install
+
 cd /usr/local
 tar vcJf ./xzmm.tar.xz xzmm
+tar vcJf ./lzipmm.tar.xz lzipmm
 
-mv ./xzmm.tar.xz /work/artifact/
+mv ./xzmm.tar.xz ./lzipmm.tar.xz /work/artifact/

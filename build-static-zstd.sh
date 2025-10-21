@@ -52,7 +52,8 @@ cd $WORKSPACE
 aa=1.15
 curl -sL http://download.savannah.gnu.org/releases/lzip/lunzip/lunzip-$aa.tar.gz | tar x --gzip
 cd lunzip-$aa
-LDFLAGS="-static --static -no-pie -s" ./configure --prefix=/usr/local/lzipmm && sed -i '/^LDFLAGS = /s/ = / = -static --static -no-pie -s/' ./Makefile
+LDFLAGS="-static --static -no-pie -s" ./configure --prefix=/usr/local/lzipmm
+sed -i '/^LDFLAGS = /s/ = / = -static --static -no-pie -s/' ./Makefile
 make
 make install
 

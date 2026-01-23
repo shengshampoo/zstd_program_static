@@ -27,7 +27,7 @@ ninja install
 
 # zstd
 cd $WORKSPACE
-git clone https://github.com/facebook/zstd.git
+git clone -b release https://github.com/facebook/zstd.git
 cd zstd/build/meson
 PKG_CONFIG_PATH=/usr/local/xzmm/lib/pkgconfig CFLAGS="$CFLAGS -static" LDFLAGS="-static --static -no-pie -s" meson setup builddir -Dprefix=/usr/local/xzmm -Ddefault_library=static -Dzlib=enabled -Dlzma=enabled -Dlz4=enabled --strip
 cd builddir

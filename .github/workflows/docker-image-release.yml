@@ -1,0 +1,51 @@
+name: Docker Image CI - X86_64/AARCH64 for Alpine Linux to continuous tags
+
+on:
+  push:
+    branches: [ "main" ]
+    tags:
+      - 'continuous'    
+  pull_request:
+    branches: [ "main" ]
+  # run it manually
+  workflow_dispatch:     
+  schedule:
+    - cron: "43 0 * * *"  
+    - cron: "49 12 * * *"  
+    
+jobs:
+
+  build:
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build --tag builder .
+
+    - name: build static program with alpine linux docker 
+      run: |
+        docker run --cidfile=builder.cid builder true
+        docker cp "$(cat builder.cid):work/artifact/." .
+
+    - name: Upload binaries to release - xz, lz4 and zstd
+      uses: svenstaro/upload-release-action@v2
+      with:
+        file: ./xzmm.tar.xz
+        asset_name: xzmm-${{ runner.os }}-${{ runner.arch }}.tar.xz
+        tag: refs/tags/continuous
+        overwrite: true
+        body: "Fully static xz, lz4,zstd,lzip and lunzip binary using alpine linux docker containers."
+
+    - name: Upload binaries to release - lzip lunzip
+      uses: svenstaro/upload-release-action@v2
+      with:
+        file: ./lzipmm.tar.xz
+        asset_name: lzipmm-${{ runner.os }}-${{ runner.arch }}.tar.xz
+        tag: refs/tags/continuous
+        overwrite: true
+        body: "Fully static xz, lz4,zstd,lzip and lunzip binary using alpine linux docker containers."        

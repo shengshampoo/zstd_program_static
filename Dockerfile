@@ -10,9 +10,9 @@ RUN apk upgrade
 RUN apk add --no-cache \
   gcc make linux-headers musl-dev \
   zlib-dev zlib-static python3-dev \
-  curl git xz grep jq meson ninja g++ tar zstd gzip
+  curl git xz grep jq meson ninja g++ pkgconf
 
 ENV XZ_OPT=-e9
 COPY build-static-zstd.sh build-static-zstd.sh
 RUN chmod +x ./build-static-zstd.sh
-RUN sh ./build-static-zstd.sh
+RUN bash ./build-static-zstd.sh

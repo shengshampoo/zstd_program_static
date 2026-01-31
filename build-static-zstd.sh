@@ -43,7 +43,7 @@ ninja install
 # lzip
 cd $WORKSPACE
 aa=1.25
-curl -sL http://download.savannah.gnu.org/releases/lzip/lzip-$aa.tar.lz | tar x --lzip
+curl -sL http://download-mirror.savannah.gnu.org/releases/lzip/lzip-$aa.tar.lz | tar x --lzip
 cd lzip-$aa
 LDFLAGS="-static --static -no-pie -s" ./configure --prefix=/usr/local/lzipmm
 sed -i '/^LDFLAGS = /s/ = / = -static --static -no-pie -s/' ./Makefile
@@ -53,7 +53,7 @@ make install
 # lunzip
 cd $WORKSPACE
 aa=1.16-rc1
-curl -sL http://download.savannah.gnu.org/releases/lzip/lunzip/lunzip-$aa.tar.lz | tar x --lzip
+curl -sL http://download-mirror.savannah.gnu.org/releases/lzip/lunzip/lunzip-$aa.tar.lz | tar x --lzip
 cd lunzip-$aa
 LDFLAGS="-static --static -no-pie -s" ./configure --prefix=/usr/local/lzipmm
 sed -i '/^LDFLAGS = /s/ = / = -static --static -no-pie -s/' ./Makefile

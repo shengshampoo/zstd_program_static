@@ -49,21 +49,4 @@ jobs:
         tag: refs/tags/continuous
         overwrite: true
         body: "Fully static binary such as xz/lz4/zstd/lzip using alpine linux docker containers."        
-
-    - name: Upload binaries to release - xz, lz4 and zstd
-      uses: svenstaro/upload-release-action@v2
-      with:
-        file: ./lz4mm.tar.xz
-        asset_name: lz4mm-${{ runner.os }}-${{ runner.arch }}.tar.xz
-        tag: refs/tags/continuous
-        overwrite: true
-        body: "Fully static binary such as xz/lz4/zstd/lzip using alpine linux docker containers."
-
-    - name: Upload binaries to release - xz, lz4 and zstd
-      uses: svenstaro/upload-release-action@v2
-      with:
-        file: ./zstdmm.tar.xz
-        asset_name: zstdmm-${{ runner.os }}-${{ runner.arch }}.tar.xz
-        tag: refs/tags/continuous
-        overwrite: true
-        body: "Fully static binary such as xz/lz4/zstd/lzip using alpine linux docker containers."
+        

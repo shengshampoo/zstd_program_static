@@ -39,7 +39,7 @@ jobs:
         asset_name: xzmm-${{ runner.os }}-${{ runner.arch }}.tar.xz
         tag: refs/tags/continuous
         overwrite: true
-        body: "Fully static binary such as xz/lz4/zstd/lzip using alpine linux docker containers."
+        body: "Fully static binary such as xz/lz4/zstd/lzip/tar using alpine linux docker containers."
 
     - name: Upload binaries to release - lzip lunzip
       uses: svenstaro/upload-release-action@v2
@@ -48,5 +48,13 @@ jobs:
         asset_name: lzipmm-${{ runner.os }}-${{ runner.arch }}.tar.xz
         tag: refs/tags/continuous
         overwrite: true
-        body: "Fully static binary such as xz/lz4/zstd/lzip using alpine linux docker containers."        
-        
+        body: "Fully static binary such as xz/lz4/zstd/lzip/tar using alpine linux docker containers."        
+
+    - name: Upload binaries to release - tar
+      uses: svenstaro/upload-release-action@v2
+      with:
+        file: ./tarmm.tar.xz
+        asset_name: tarmm-${{ runner.os }}-${{ runner.arch }}.tar.xz
+        tag: refs/tags/continuous
+        overwrite: true
+        body: "Fully static binary such as xz/lz4/zstd/lzip/tar using alpine linux docker containers."            

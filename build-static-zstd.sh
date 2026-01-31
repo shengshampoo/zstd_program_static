@@ -1,7 +1,7 @@
 
 #! /bin/bash
 
-#set -e
+set -e
 
 WORKSPACE=/tmp/workspace
 mkdir -p $WORKSPACE
@@ -36,13 +36,14 @@ cd builddir
 sed -i 's@.so.3 @.a @g' ./build.ninja
 sed -i 's@.so @.a @g' ./build.ninja
 sed -i 's@-llz4@-L/usr/local/xzmm/lib -llz4@g' ./build.ninja
+sed -i '/man1_EXT/s/^/#&/'  ./programs/meson.build
 ninja
 ninja install
 
 # lzip
 cd $WORKSPACE
 aa=1.25
-curl -sL https://quantum-mirror.hu/mirrors/pub/gnusavannah/lzip/lzip-$aa.tar.gz | tar x --gzip
+curl -sL http://download.savannah.gnu.org/releases/lzip/lzip-$aa.tar.lz | tar x --lzip
 cd lzip-$aa
 LDFLAGS="-static --static -no-pie -s" ./configure --prefix=/usr/local/lzipmm
 sed -i '/^LDFLAGS = /s/ = / = -static --static -no-pie -s/' ./Makefile
@@ -52,7 +53,7 @@ make install
 # lunzip
 cd $WORKSPACE
 aa=1.15
-curl -sL http://download.savannah.gnu.org/releases/lzip/lunzip/lunzip-$aa.tar.gz | tar x --gzip
+curl -sL http://download.savannah.gnu.org/releases/lzip/lunzip/lunzip-$aa.tar.lz | tar x --lzip
 cd lunzip-$aa
 LDFLAGS="-static --static -no-pie -s" ./configure --prefix=/usr/local/lzipmm
 sed -i '/^LDFLAGS = /s/ = / = -static --static -no-pie -s/' ./Makefile

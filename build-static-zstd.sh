@@ -65,8 +65,8 @@ make install
 
 cd /usr/local
 tar -cvJf ./xzmm.tar.xz xzmm
-tar -cvJf ./lz4mm.tar.xz lz4mm
-tar -cvJf ./zstdmm.tar.xz zstdmm
+#tar -cvJf ./lz4mm.tar.xz lz4mm
+#tar -cvJf ./zstdmm.tar.xz zstdmm
 tar -cvJf ./lzipmm.tar.xz lzipmm
 
 mv ./*.xz /work/artifact/

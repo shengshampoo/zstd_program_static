@@ -32,7 +32,9 @@ cd $WORKSPACE
 git clone https://github.com/facebook/zstd.git
 cd zstd/build/meson
 #sed -i '/man1_EXT/s/^/#&/'  ./programs/meson.build
-PKG_CONFIG_PATH=/usr/local/xzmm/lib/pkgconfig CFLAGS="$CFLAGS -static" LDFLAGS="-static --static -no-pie -s" meson setup builddir -Dprefix=/usr/local/zstdmm -Ddefault_library=static -Dzlib=enabled -Dlzma=enabled -Dlz4=enabled --strip
+PKG_CONFIG_PATH=/usr/local/xzmm/lib/pkgconfig:/usr/local/lz4mm/lib/pkgconfig \
+CFLAGS="$CFLAGS -static" LDFLAGS="-static --static -no-pie -s" \
+meson setup builddir -Dprefix=/usr/local/zstdmm -Ddefault_library=static -Dzlib=enabled -Dlzma=enabled -Dlz4=enabled --strip
 cd builddir
 sed -i 's@.so.3 @.a @g' ./build.ninja
 sed -i 's@.so @.a @g' ./build.ninja

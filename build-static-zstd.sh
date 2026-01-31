@@ -60,8 +60,19 @@ sed -i '/^LDFLAGS = /s/ = / = -static --static -no-pie -s/' ./Makefile
 make
 make install
 
+# tar
+cd $WORKSPACE
+git clone git://git.savannah.gnu.org/tar.git
+cd tar
+git clone --recursive https://github.com/coreutils/gnulib.git
+./bootstrap
+FORCE_UNSAFE_CONFIGURE=1 CFLAGS="$CFLAGS -Wno-error=unused-value" LDFLAGS="-static --static -no-pie -s" ./configure --prefix=/usr/local/tarmm
+make
+make install
+
 cd /usr/local
 tar vcJf ./xzmm.tar.xz xzmm
 tar vcJf ./lzipmm.tar.xz lzipmm
+tar vcJf ./tarmm.tar.xz tarmm
 
-mv ./xzmm.tar.xz ./lzipmm.tar.xz /work/artifact/
+mv ./[tlx]*mm.xz /work/artifact/

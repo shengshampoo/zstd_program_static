@@ -75,4 +75,4 @@ tar vcJf ./xzmm.tar.xz xzmm
 tar vcJf ./lzipmm.tar.xz lzipmm
 tar vcJf ./tarmm.tar.xz tarmm
 
-mv ./[tlx]*mm.xz /work/artifact/
+mv ./*mm.xz /work/artifact/

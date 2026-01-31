@@ -35,7 +35,7 @@ sed -i 's@.so.3 @.a @g' ./build.ninja
 sed -i 's@.so @.a @g' ./build.ninja
 sed -i 's@-llz4@-L/usr/local/xzmm/lib -llz4@g' ./build.ninja
 ninja
-ninja install
+#ninja install
 
 # lzip
 cd $WORKSPACE

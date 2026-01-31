@@ -1,7 +1,7 @@
 
 #! /bin/bash
 
-set -e
+#set -e
 
 WORKSPACE=/tmp/workspace
 mkdir -p $WORKSPACE
@@ -35,7 +35,7 @@ PKG_CONFIG_PATH=/usr/local/xzmm/lib/pkgconfig CFLAGS="$CFLAGS -static" LDFLAGS="
 cd builddir
 sed -i 's@.so.3 @.a @g' ./build.ninja
 sed -i 's@.so @.a @g' ./build.ninja
-#sed -i 's@-llz4@-L/usr/local/xzmm/lib -llz4@g' ./build.ninja
+sed -i 's@-llz4@-L/usr/local/xzmm/lib -llz4@g' ./build.ninja
 ninja
 ninja install
 

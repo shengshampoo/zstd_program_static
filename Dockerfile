@@ -6,11 +6,13 @@ FROM bellsoft/alpaquita-linux-base:stream-musl
 RUN apk update
 RUN apk upgrade
 
-# required xz, lz4, and zstd
+# required xz, lz4, zstd, and tar 
 RUN apk add --no-cache \
   gcc make linux-headers musl-dev \
   zlib-dev zlib-static python3-dev \
-  curl xz git grep jq meson ninja g++ bash pkgconf tar lzip
+  curl xz git grep jq meson ninja g++ bash pkgconf tar lzip \
+  libtool autoconf automake wget gettext gettext-dev texinfo bison
+
 
 ENV XZ_OPT=-e9
 COPY build-static-zstd.sh build-static-zstd.sh

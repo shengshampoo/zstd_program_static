@@ -20,7 +20,7 @@ make install
 cd $WORKSPACE
 git clone https://github.com/lz4/lz4.git
 cd lz4/build/meson
-PKG_CONFIG_PATH=/usr/local/xzmm/lib/pkgconfig CFLAGS="$CFLAGS -static" LDFLAGS="-static --static -no-pie -s" meson setup builddir -Dprefix=/usr/local/xzmm -Ddefault_library=static -Dprograms=true --strip
+PKG_CONFIG_PATH=/usr/local/xzmm/lib/pkgconfig CFLAGS="$CFLAGS -static" LDFLAGS="-static --static -no-pie -s" meson setup builddir -Dprefix=/usr/local/lz4mm -Ddefault_library=static -Dprograms=true --strip
 cd builddir
 sed -i 's@.so.3 @.a @g' ./build.ninja
 sed -i 's@.so @.a @g' ./build.ninja
@@ -32,11 +32,12 @@ cd $WORKSPACE
 git clone https://github.com/facebook/zstd.git
 cd zstd/build/meson
 #sed -i '/man1_EXT/s/^/#&/'  ./programs/meson.build
-PKG_CONFIG_PATH=/usr/local/xzmm/lib/pkgconfig CFLAGS="$CFLAGS -static" LDFLAGS="-static --static -no-pie -s" meson setup builddir -Dprefix=/usr/local/xzmm -Ddefault_library=static -Dzlib=enabled -Dlzma=enabled -Dlz4=enabled --strip
+PKG_CONFIG_PATH=/usr/local/xzmm/lib/pkgconfig CFLAGS="$CFLAGS -static" LDFLAGS="-static --static -no-pie -s" meson setup builddir -Dprefix=/usr/local/zstdmm -Ddefault_library=static -Dzlib=enabled -Dlzma=enabled -Dlz4=enabled --strip
 cd builddir
 sed -i 's@.so.3 @.a @g' ./build.ninja
 sed -i 's@.so @.a @g' ./build.ninja
-sed -i 's@-llz4@-L/usr/local/xzmm/lib -llz4@g' ./build.ninja
+sed -i 's@-llzma@-L/usr/local/xzmm/lib -llzma@g' ./build.ninja
+sed -i 's@-llz4@-L/usr/local/lz4mm/lib -llz4@g' ./build.ninja
 ninja
 ninja install
 
@@ -62,6 +63,8 @@ make install
 
 cd /usr/local
 tar vcJf ./xzmm.tar.xz xzmm
+tar vcJf ./lz4mm.tar.xz lz4mm
+tar vcJf ./zstdmm.tar.xz zstdmm
 tar vcJf ./lzipmm.tar.xz lzipmm
 
-mv ./xzmm.tar.xz ./lzipmm.tar.xz /work/artifact/
+mv ./*.xz /work/artifact/

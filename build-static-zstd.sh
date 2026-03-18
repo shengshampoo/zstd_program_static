@@ -42,7 +42,7 @@ ninja install
 
 # lzip
 cd $WORKSPACE
-aa=1.25
+aa=1.26
 curl -sL http://download-mirror.savannah.gnu.org/releases/lzip/lzip-$aa.tar.lz | tar x --lzip
 cd lzip-$aa
 LDFLAGS="-static --static -no-pie -s" ./configure --prefix=/usr/local/lzipmm
@@ -52,7 +52,7 @@ make install
 
 # lunzip
 cd $WORKSPACE
-aa=1.16-rc1
+aa=1.16
 curl -sL http://download-mirror.savannah.gnu.org/releases/lzip/lunzip/lunzip-$aa.tar.lz | tar x --lzip
 cd lunzip-$aa
 LDFLAGS="-static --static -no-pie -s" ./configure --prefix=/usr/local/lzipmm

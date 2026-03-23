@@ -57,4 +57,13 @@ jobs:
         asset_name: tarmm-${{ runner.os }}-${{ runner.arch }}.tar.xz
         tag: refs/tags/continuous
         overwrite: true
-        body: "Fully static binary such as xz/lz4/zstd/lzip/tar using alpine linux docker containers."            
+        body: "Fully static binary such as xz/lz4/zstd/lzip/tar using alpine linux docker containers."   
+
+    - name: Upload binaries to release - file
+      uses: svenstaro/upload-release-action@v2
+      with:
+        file: ./filemm.tar.xz
+        asset_name: filemm-${{ runner.os }}-${{ runner.arch }}.tar.xz
+        tag: refs/tags/continuous
+        overwrite: true
+        body: "Fully static binary such as xz/lz4/zstd/lzip/tar using alpine linux docker containers."           

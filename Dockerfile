@@ -11,7 +11,8 @@ RUN apk add --no-cache \
   gcc make linux-headers musl-dev \
   zlib-dev zlib-static python3-dev \
   curl xz git grep jq meson ninja g++ bash pkgconf tar lzip \
-  libtool autoconf automake wget gettext gettext-dev texinfo bison
+  libtool autoconf automake wget gettext gettext-dev texinfo bison \
+  libseccomp-dev libseccomp-static
 
 
 ENV XZ_OPT=-e9

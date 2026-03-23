@@ -75,7 +75,7 @@ cd $WORKSPACE
 git clone https://github.com/file/file
 cd file
 autoreconf -f -i
-LDFLAGS="-static --static -no-pie -s" ./configure --prefix=/usr/local/filemm
+PKG_CONFIG_PATH=/usr/local/xzmm/lib/pkgconfig LDFLAGS="-static --static -no-pie -s" ./configure --prefix=/usr/local/filemm  --enable-static --disable-shared --enable-zlib --enable-xzlib --enable-zstdlib
 make
 make install
 

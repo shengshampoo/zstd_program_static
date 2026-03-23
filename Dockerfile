@@ -12,7 +12,7 @@ RUN apk add --no-cache \
   zlib-dev zlib-static python3-dev \
   curl xz git grep jq meson ninja g++ bash pkgconf tar lzip \
   libtool autoconf automake wget gettext gettext-dev texinfo bison \
-  libseccomp-dev libseccomp-static
+  libseccomp-dev libseccomp-static bzip2-static bzip2-dev
 
 
 ENV XZ_OPT=-e9

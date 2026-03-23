@@ -70,9 +70,19 @@ FORCE_UNSAFE_CONFIGURE=1 CFLAGS="$CFLAGS -Wno-error=unused-value" LDFLAGS="-stat
 make
 make install
 
+# file
+cd $WORKSPACE
+git clone https://github.com/file/file
+cd file
+autoreconf -f -i
+LDFLAGS="-static --static -no-pie -s" ./configure --prefix=/usr/local/filemm
+make
+make install
+
 cd /usr/local
 tar vcJf ./xzmm.tar.xz xzmm
 tar vcJf ./lzipmm.tar.xz lzipmm
 tar vcJf ./tarmm.tar.xz tarmm
+tar vcJf ./filemm.tar.xz filemm
 
-mv ./[tlx]*mm.tar.xz /work/artifact/
+mv ./[ftlx]*mm.tar.xz /work/artifact/
